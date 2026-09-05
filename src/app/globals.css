@@ -1,0 +1,198 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ---------- CloudForge animations ---------- */
+
+@keyframes forge-float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes forge-float-slow {
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  50% {
+    transform: translateY(-22px) translateX(10px);
+  }
+}
+
+@keyframes forge-gradient {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes forge-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes forge-rise {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes forge-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes forge-typing-line {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.forge-anim-rise {
+  animation: forge-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.forge-delay-1 {
+  animation-delay: 0.08s;
+}
+.forge-delay-2 {
+  animation-delay: 0.16s;
+}
+.forge-delay-3 {
+  animation-delay: 0.26s;
+}
+.forge-delay-4 {
+  animation-delay: 0.38s;
+}
+.forge-delay-5 {
+  animation-delay: 0.5s;
+}
+
+.forge-float {
+  animation: forge-float 6s ease-in-out infinite;
+}
+
+.forge-float-slow {
+  animation: forge-float-slow 9s ease-in-out infinite;
+}
+
+.forge-gradient-text {
+  background-size: 200% auto;
+  animation: forge-gradient 6s ease infinite;
+}
+
+.forge-marquee-track {
+  animation: forge-marquee 28s linear infinite;
+}
+.forge-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.forge-caret {
+  animation: forge-blink 1.1s step-end infinite;
+}
+
+/* Terminal lines appear one by one, looping */
+.forge-term-line {
+  opacity: 0;
+  animation: forge-typing-line 0.5s ease forwards;
+}
+.forge-term-line:nth-child(1) {
+  animation-delay: 0.4s;
+}
+.forge-term-line:nth-child(2) {
+  animation-delay: 1s;
+}
+.forge-term-line:nth-child(3) {
+  animation-delay: 1.6s;
+}
+.forge-term-line:nth-child(4) {
+  animation-delay: 2.2s;
+}
+.forge-term-line:nth-child(5) {
+  animation-delay: 2.8s;
+}
+.forge-term-line:nth-child(6) {
+  animation-delay: 3.4s;
+}
+.forge-term-line:nth-child(7) {
+  animation-delay: 4s;
+}
+
+/* Scroll reveal */
+.forge-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.forge-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .forge-anim-rise,
+  .forge-float,
+  .forge-float-slow,
+  .forge-marquee-track,
+  .forge-term-line {
+    animation: none;
+  }
+  .forge-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
